@@ -11,7 +11,10 @@ const fs = require('fs');
 const util = require('util');
 const readAsync = util.promisify(fs.readFile);
 const writeAsync = util.promisify(fs.writeFile);
-const path = require('path')
+const path = require('path');
+const requestPath = 'requests.json';
+const userPath = 'users.json';
+const args = process.argv;
 
 const read = async(path) => {
   const file = await readAsync(path, {encoding:'utf-8'});
@@ -22,6 +25,21 @@ const write = async(path, data) => {
   const file = await writeAsync(path, data);
   return file;
 }
+
+const loggerMiddleware = async (req, res, next) => {
+  try{
+    const file = await read('requests.json');
+    const fl = await JSON.parse(file);
+    const request = { method: req.method,timestamp: new Date().toLocaleString(), url: req.url };
+    fl.push(request);
+    await write('requests.json', JSON.stringify(fl));
+  }catch(err){
+    console.log(err.message);
+  }
+  next();
+};
+
+if(args[2] === 'debug') app.use(loggerMiddleware);
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,10 +63,10 @@ mongoose
     let truth;
     let index;
     try{
-      const file = await read('users.json');
+      const file = await read(userPath);
       fl = JSON.parse(file);
     }catch(err){
-      console.log(err);
+      res.status(500).send('Something wrong');
     }
     for(let i = 0; i < fl.length; i++){
       if(fl[i].posts.includes(id)) {
@@ -59,7 +77,7 @@ mongoose
     if(truth) {
       if(fl[index].email === email){
         fl[index].posts = fl[index].posts.filter(e => e !== id);
-        await write('users.json', JSON.stringify(fl));
+        await write(userPath, JSON.stringify(fl));
         next();
       } else {
         res.status(401).send('No chance');
@@ -74,17 +92,21 @@ const checkAuthorizationMiddleware = async (req, res, next) => {
   if(!token) next();
   const [email, password] = token.split('&');
   try {
-    const file = await read('users.json');
+    const file = await read(userPath);
     const fl = JSON.parse(file);
     const user = fl.findIndex(e => e.email === email && e.password === password);
     if(!user) next();
     fl[user].posts.push(post.id);
-    await write('users.json', JSON.stringify(fl));
+    await write(userPath, JSON.stringify(fl));
     next();
   }catch(err){
     res.status(500).send('Something wrong');
     }
 }
+
+app.get('/heartbeat', (req, res) => {
+  res.send(new Date().toLocaleString());
+})
 
 app.post("/add", checkAuthorizationMiddleware , (req, res) => {
   

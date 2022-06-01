@@ -4,23 +4,23 @@ const Schema = mongoose.Schema;
 const addSchema = new Schema({
      title: {
          type: String,
-         required: true
+         required: [true, 'Title required']
      },
      description: {
          type: String,
-         required: true
+         required: [true, 'Description required']
      },
      author : {
          type: String,
-         required: true
+         required: [true, 'Author name required']
      },
      category: {
          type: String,
-         required: true
+         required: [true, 'Choose category']
      },
      tags: {
          type: String,
-         required: true
+         required: [true, 'Tags required']
      },
      price: {
          type: String,
