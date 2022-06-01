@@ -23,7 +23,7 @@ const addSchema = new Schema({
          required: [true, 'Tags required']
      },
      price: {
-         type: String,
+         type: Number,
          required: false
      }
 }, { timestamps: true });
