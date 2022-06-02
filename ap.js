@@ -120,7 +120,7 @@ app.get("/heartbeat", (req, res) => {
   res.status(200).send(new Date().toLocaleString());
 });
 
-app.post("/add", checkAuthorizationMiddleware, (req, res) => {
+app.post("/post/add", checkAuthorizationMiddleware, (req, res) => {
   req.post
     .save()
     .then((_) => {
@@ -238,7 +238,7 @@ app.get("/post/:id", (req, res) => {
     });
 });
 
-app.delete("/post/:id", checkUserMiddleware, (req, res) => {
+app.delete("/post/delete/:id", checkUserMiddleware, (req, res) => {
   const id = req.params.id;
   Post.findByIdAndDelete(id)
     .then((_) => {
@@ -250,7 +250,7 @@ app.delete("/post/:id", checkUserMiddleware, (req, res) => {
     });
 });
 
-app.put("/post/:id", checkUserMiddleware, (req, res) => {
+app.put("/post/update/:id", checkUserMiddleware, (req, res) => {
   const id = req.params.id;
   Post.findByIdAndUpdate(id, req.body, (err, result) => {
     if (err) {

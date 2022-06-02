@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "aecab194-546d-4342-8006-41d9e65bc418",
+		"name": "Node_Egzamin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "heartbeat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/heartbeat",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"title\": \"Nowy\",\r\n      \"description\": \"new\",\r\n      \"author\": \"Jan Nowak\",\r\n      \"category\": \"Jogging\",\r\n      \"tags\": \"Jogging\",\r\n      \"price\": 102\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPostByUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "maciek@maciek.pl&maciek123",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"title\": \"Nowy\",\r\n      \"description\": \"new\",\r\n      \"author\": \"Jan Nowak\",\r\n      \"category\": \"Jogging\",\r\n      \"tags\": \"Jogging\",\r\n      \"price\": 102\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/all",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/category/Jogging",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"category",
+						"Jogging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByTitle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/title/Nowy",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"title",
+						"Nowy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByAuthor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/author/Jan Nowak",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"author",
+						"Jan Nowak"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByPrice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/price/1/100",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"price",
+						"1",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/date/1.06.022/1.06.2022",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"date",
+						"1.06.022",
+						"1.06.2022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/62979799da32f22570c3920f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"62979799da32f22570c3920f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePostByIdByUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "maciek@maciek.pl&maciek123",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/delete/62979799da32f22570c3920f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"delete",
+						"62979799da32f22570c3920f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePostById",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1234",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/delete/629861de2268d28be9401e01",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"delete",
+						"629861de2268d28be9401e01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePostByIdByUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "jan@jan.pl&jan123",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"title\": \"Updated post\",\r\n      \"description\": \"new post\",\r\n      \"author\": \"Jan Nowak\",\r\n      \"category\": \"Jogging\",\r\n      \"tags\": \"Shop\",\r\n      \"price\": 108\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/update/62985f4f0ea50781f3b82f5c",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"update",
+						"62985f4f0ea50781f3b82f5c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePostById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1234",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"title\": \"Updated post\",\r\n      \"description\": \"new post\",\r\n      \"author\": \"Jan Nowak\",\r\n      \"category\": \"Jogging\",\r\n      \"tags\": \"Shop\",\r\n      \"price\": 108\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/post/update/62985eede7e995693a987bd0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"post",
+						"update",
+						"62985eede7e995693a987bd0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnknownUrl",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}:{{port}}/costam",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"costam"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
